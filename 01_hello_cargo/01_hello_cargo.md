@@ -1,8 +1,3 @@
-fn main() {
-    println!("Hello, Cargo!");
-}
-
-/*
 ####### Hello, Cargo! #######
 Cargo is Rust's build system and package manager. Most rust devs use it to manage projects 
 because it handles a lot of tasks for you, such as building code, downloading libraries, and
@@ -21,6 +16,3 @@ Cargo generates 2 files and one directory for us: a Cargo.toml file, and a src d
 with a main.rs file inside. 
 It also initializes a new Git repo along with a .gitignore. Git files won't be generated
 if you run cargo new inside an existing repo; you can override with: cargo new --vcs=git
-
-
-*/
