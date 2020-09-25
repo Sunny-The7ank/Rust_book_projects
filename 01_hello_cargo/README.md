@@ -1,4 +1,4 @@
-####### Hello, Cargo! #######
+####### Hello, Cargo! #######  
 Cargo is Rust's build system and package manager. Most rust devs use it to manage projects 
 because it handles a lot of tasks for you, such as building code, downloading libraries, and
 building those libraries.
@@ -7,7 +7,7 @@ building those libraries.
 The simplest programs like "Hello, world!" don't have any dependencies. More complex programs
 will require the use of cargo. 
 
-####### Creating Projects with Cargo #######
+####### Creating Projects with Cargo #######  
 Basic project creation in cargo uses this syntax:
     cargo new <project_name>
 This creates a new project named whatever project_name is in a new directory named 
