@@ -1,6 +1,7 @@
 ####### Anatomy of a Rust program #######  
-    fn main() {  
 
+    fn main() {  
+    
     }  
 This is a function in rust.  Specifically, the main function. Every program in rust
 needs a main function and can only have one. The first line main() declares main
@@ -12,7 +13,8 @@ It's good style to place the open brace on the same line as func declaration, ad
 space between  
   
     println!("Hello, world!");  
-This line does all the work in this little program: it prints text to the screen. There are 4 important details to note:  
+This line does all the work in this little program: it prints text to the screen.  
+There are 4 important details to note:  
 First:  
     Rust style is to indent with 4 spaces, not tabs.  
 Second:  
@@ -23,7 +25,7 @@ Fourth:
     We end lines with ; which indicates that this expression is over and the next can begin  
     Most, but not all, lines end with a semicolon  
 
-####### Compiling and Running #######
+####### Compiling and Running #######  
 These are 2 different steps. Cargo can make it look like 1 if you use cargo build. 
 On windows, when compiled, rustc generates 2 additional files when compiled: a .exe and a .pdb
 The .exe is the executable program. The .pdb is debug info.
