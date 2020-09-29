@@ -15,15 +15,10 @@ space between
     println!("Hello, world!");  
 This line does all the work in this little program: it prints text to the screen.  
 There are 4 important details to note:  
-First:  
-    Rust style is to indent with 4 spaces, not tabs.  
-Second:  
-    println! calls a macro. If it called a func, it wouldn't have a !  
-Third:  
-    We pass strings as an argument to println!, and the string is printed to the screen  
-Fourth:  
-    We end lines with ; which indicates that this expression is over and the next can begin  
-    Most, but not all, lines end with a semicolon  
+1. Rust style is to indent with 4 spaces, not tabs.  
+2. println! calls a macro. If it called a func, it wouldn't have a !  
+3. We pass strings as an argument to println!, and the string is printed to the screen
+4. We end lines with ; which indicates that this expression is over and the next can begin.  Most, but not all, lines end with a semicolon  
 
 ####### Compiling and Running #######  
 These are 2 different steps. Cargo can make it look like 1 if you use cargo build. 
