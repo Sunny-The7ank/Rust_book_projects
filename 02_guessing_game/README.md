@@ -66,3 +66,31 @@ Before we can write code to take advantage of the rand crate, we need to import 
 
     [dependencies]
     rand = "0.5.5"
+
+In the Cargo file, a section extends until another section is declared.  The `[dependencies]` section is where you tell cargo what external crates your program requires.  We are specifying the `rand` crate and the version `0.5.5` specifically.  The number `0.5.5` is shorthand for `^0.5.5`, which means "any version that has a public API compatible with version 0.5.5"  
+
+Now we will build the program and see Cargo import `rand` and anything it depends on.  It should look similar to this:  
+
+    Compiling winapi v0.3.9
+    Compiling rand_core v0.4.2
+    Compiling rand_core v0.3.1
+    Compiling rand v0.5.6
+    Compiling guessing_game v0.1.0 (D:\Users\<username>\rust_book_projects\02_guessing_game)
+    Finished dev [unoptimized + debuginfo] target(s) in 10.88s
+
+Cargo automatically fetches external crates and dependencies from Crates.io.  Crates.io is where most developers post their open source Rust projects and libraries for others to use.  Cargo only fetches new crates/dependencies if there is a change.  
+
+####### Ensuring Reproducible Builds #######  
+
+Carco has a mechanism where you can lock dependencies at a certain level.  This is desireable if a new version of a crate breaks something in your code.  This also ensures that anyone else who builds your code will have the same output.  This is done automatically by Cargo.  When you build after including some new dependencies, the dependencies are added to the `Cargo.lock` file.  The crates you import will stay at the level you choose until you explicitly upgrade.  
+
+When you want to upgrade a crate, that can be done by running `cargo update`.  This ignores the *Cargo.lock* and figures out the latest versions that fit your specs within the *Cargo.toml* file.  By default, in this instance with rand, Cargo will only look for versions higher than `0.5.5` and lest than `0.6.0`.  If you want to use a `rand` version `0.6.0` or any version in the `0.6.x` series, you'd have to update the *Cargo.toml* file to look like this:  
+
+    [dependencies]
+    rand = "0.6.0"
+
+The next run of `cargo build` will make Cargo update the internal crate registry.
+
+####### Generating a Random Number #######  
+
+Now that `rand` is added, let's use it.  See listing 2-3 in the book for changes.
