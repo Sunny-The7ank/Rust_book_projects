@@ -93,4 +93,14 @@ The next run of `cargo build` will make Cargo update the internal crate registry
 
 ####### Generating a Random Number #######  
 
-Now that `rand` is added, let's use it.  See listing 2-3 in the book for changes.
+Now that `rand` is added, let's use it.  See listing 2-3 in the book for changes.  
+
+The first thing we did was add `use rand::Rng`.  The `Rng` trait defines methods that random number gens implement.  This trait must be in scope to be able to use it's methods.  
+
+Next, we added 2 lines.  The `rand::thread_rng` function will give us the particular random number generator that we're going to use: one that is local to the current thread of execution and seeded by the OS.  Then we call `gen_range` to set an upper and lower bound for our random number: 1 - 100.  But, we must use 1  - 101 to get a number between 1 and 100.  
+
+The second line is a debug line that lets us know what the current secret number is.  This will be deleted later to make this an actual guessing game.
+
+####### Comparing Input to the Secret Number #######  
+
+Adding the code from Listing 2-4.  This code doesn't compile... yet.
