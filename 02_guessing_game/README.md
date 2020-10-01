@@ -103,4 +103,13 @@ The second line is a debug line that lets us know what the current secret number
 
 ####### Comparing Input to the Secret Number #######  
 
-Adding the code from Listing 2-4.  This code doesn't compile... yet.
+Adding the code from Listing 2-4.  This code doesn't compile... yet.  
+
+The first thing we're doing is bringing in another library from the standard lib: `std::cmp::Ordering`.  This is another enum like Result.  It's variants are `Less`, `Greater`, and `Equal`.  
+
+Next, we add 5 lines for a comparison between `guess` and `secret_number`.  We are using a `match` expression for matching.  Match expressions are made of arms.  An arm contains a pattern and the code that should run in the event of a match.  
+
+However, this code won't even compile.  This is because of a type mismatch between the `guess` variable and the `secret_number` variable.  When we wrote `let mut guess = String::new()`, it was inferred to be a String.  The `secret_numer`, however, is a number type.  Ultimately, we want to conver the String from stdin into a number type so we can compare numerically in the match statement.  We'll add this line to make it convert:  
+
+    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+
