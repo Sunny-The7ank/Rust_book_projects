@@ -56,3 +56,13 @@ For `Result`, the variants are `Ok` or `Err`.  The OK variant means the operatio
 
 The purpose of these result types is to encode error-handling info.  Values of the `Result` type, like values of any type, have methods defined on them.  An instance of io::result has an `expect` method that can be called.  If the instance of `io::Result` is an `Err`, `expect` will cause the program to crash and display the message you pass as an arg.  If you don't build in a handler for an `Err` Result, your program will compile, but you will get an error.  The right way to suppress warnings is to actually write error handling, but if you just want the program to crash out, you can just use `expect`.  
 
+####### Generating a Secret Number #######  
+
+Right now, the program just accepts an input from standard in and echos it back to standard out.  To actually make this do something, we need to import a `crate`.  Specifically the `rand` crate.  This crate allows us to generate a random number for comparison to the input.  
+
+A crate is just a collection of Rust source code files.  The project we've been building is a *binary* crate, meaning it is meant to be an executable.  The `rand` crate is a *library* crate, which is a collection of code intended to be used in other programs.  
+
+Before we can write code to take advantage of the rand crate, we need to import it as a dependency.  Open the `Cargo.toml` file and add the following to the bottom.  
+
+    [dependencies]
+    rand = "0.5.5"
