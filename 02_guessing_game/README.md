@@ -165,4 +165,6 @@ To:
         Err(_) => continue,
     };
 
-Switching from an `expect` call to a `match` expression is generally how you change from crashing out to actual error handling.  If `parse` can successfully turn the input into a `u32`, it will return an `Ok` value that contains the resulting number.  If it can't, it returns an `Err` value with more information about the error.  The `Err` value doesn;t match the `Ok(num)` pattern in the first arm of the `match`, but it does match the `Err(_)` pattern.  The underscore here is a catchall value; basically anything that doesn't match OK.  The program effectively ignores all errors that `parse` might encounter.
+Switching from an `expect` call to a `match` expression is generally how you change from crashing out to actual error handling.  If `parse` can successfully turn the input into a `u32`, it will return an `Ok` value that contains the resulting number.  If it can't, it returns an `Err` value with more information about the error.  The `Err` value doesn;t match the `Ok(num)` pattern in the first arm of the `match`, but it does match the `Err(_)` pattern.  The underscore here is a catchall value; basically anything that doesn't match OK.  The program effectively ignores all errors that `parse` might encounter.  
+
+Let's also remove the `secret_number` debug `println!`
