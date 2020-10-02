@@ -113,3 +113,41 @@ However, this code won't even compile.  This is because of a type mismatch betwe
 
     let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
+We created another variable named `guess`.  There is already a variable named that but, Rust allows us to *shadow* the previous value of `guess` with a new one.  `Shadowing` is often used when you want to convert variable types without the need to create a new variable.  Let's walk through this.  
+`let guess: u32` is shadowing the previous `guess` variable as a `u32` type.  We bind `guess` to the expression `guess.trim().parse()`.  This `guess` refers to the original that was a `String` with the user input in it.  The `trim()` method on a `String` will eliminate any leading and trailing whitespace.  Although `u32` can only contain numerical chars, the user must press enter to satisfy `read_line`.  When enter is pressed, a newline char is added to the input.  Ex: if you type in 5 and press enter, `guess` contains: `5\n`.  Trim also eliminates the newline char.  
+
+The `parse` method on strings parses a string into a number type.  BEcause this method can be used for multiple different numerical types, we need to tell Rust what type of number we want.  For this example, a `u32` is sufficiently sized because it is an unsigned 32-bit integer.  
+
+Because `parse` calls could easily result in errors, it also returns a `Result` type.  We will handle this type much like the `read_line` result previously.  Any `Err` returned will crash the game.  Now let's make it run until you quess correctly or rage quit.  
+
+####### Allowing Multiple Guesses with a Loop #######  
+
+The `loop` keyword creates an infinite loop.  Let's modify the code for that.  Ex:  
+
+    // --snip--
+
+    println!("The secret number is: {}", secret_number);
+
+    loop {
+        println!("Please input your guess.");
+
+        // --snip--
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => println!("You win!"),
+        }
+    }
+    // --snip--  
+
+Now that everything is in a loop, make sure to indent lines correctly.  Unfortunately, the only way to quit right now is to crash the game.  Let's make the exit more graceful by modifying the match statement.  Here's what that should look like:  
+
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => {
+            println!("You win!");
+            break;
+        }
+    }
