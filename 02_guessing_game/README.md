@@ -150,4 +150,19 @@ Now that everything is in a loop, make sure to indent lines correctly.  Unfortun
             println!("You win!");
             break;
         }
-    }
+    }  
+
+####### Handling Invalid Input #######  
+
+To further refine, let's handle non numeric chars instead of just crashing out.  We are going to modify the line where we shadow `guess` by telling our code to continue executuion.  
+We are changing the line from:  
+    
+    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+To:  
+
+    let guess: u32 = match guess.trim().parse() {
+        Ok(num) => num,
+        Err(_) => continue,
+    };
+
+Switching from an `expect` call to a `match` expression is generally how you change from crashing out to actual error handling.  If `parse` can successfully turn the input into a `u32`, it will return an `Ok` value that contains the resulting number.  If it can't, it returns an `Err` value with more information about the error.  The `Err` value doesn;t match the `Ok(num)` pattern in the first arm of the `match`, but it does match the `Err(_)` pattern.  The underscore here is a catchall value; basically anything that doesn't match OK.  The program effectively ignores all errors that `parse` might encounter.
