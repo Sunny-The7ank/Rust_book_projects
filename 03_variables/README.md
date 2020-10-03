@@ -18,3 +18,9 @@ There are tradeoffs for using mutability.  With large data structures, it may be
 
 ####### Differences Between Variables and Constants #######  
 
+Constants are variables that you set before compilation.  These values never change.  They are always immutable.  An example of setting a constant:  
+
+    const MAX_POINTS: u32 = 100_000;  
+
+The naming convention for constants is to be all upper case, use snake_case for the variable name, and use underscores in numerical values to help with readability.  
+
