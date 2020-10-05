@@ -24,3 +24,40 @@ Constants are variables that you set before compilation.  These values never cha
 
 The naming convention for constants is to be all upper case, use snake_case for the variable name, and use underscores in numerical values to help with readability.  
 
+####### Shadowing #######  
+
+You can declare a new variable with the same name as a previous one, and the new variable shadows the previous one.  *Shadowing* means that the first declaration is shadowed by the second, which means the the second variable's value is what appears when the variable is used.  We can shadow a variable by using the same variable's name and repeating the use of the `let` keyword like so:  
+
+    fn main() {
+        let x = 5;
+
+        let x = x + 1;
+
+        let x = x * 2;
+
+        println!("The value of x is: {}", x);
+    }  
+
+This program first binds `x` to the value `5`.  It then shadows `x` by repeating `let x =`, taking the original value and adding `1` so `x` = `6`.  The third statement shadows a shadowed value and multiplies `x` by `2` to give `x` a final value of `12`.
+
+Shadowing is different from making variables mutable, because we'll get a compiler error if we try to reassign a variable without using the `let` keyword.  By using `let`, we can perform a few transformations on a value but have the variable immutable after those transformations have been completed.  
+
+The other difference between `mut` and shadowing is that because we're effectively creating a new variable when we use the `let` keyword again, we can change the type of the value but reuse the same name.  EX: say our program asks a user to show how many spaces they want between some text by inputting space characters, but we really want to store that input as a numerical value:  
+
+    let spaces = "   ";
+    let spaces = spaces.len();  
+
+This construct is allowed because the first `spaces` variable is a string type and the second `spaces` variable, which is a brand-new variable that happens to have the same name as the first one, is a number type.  Shadowing spares us from having to make a new variable and new names such as `spaces_str` for the input, and `spaces_num` for the number of spaces; instead, we can reuse the simpler `spaces` name.  However, if we try to use `mut` for this, we'll get a compiler error.  
+
+    let mut spaces = "   ";
+    spaces = spaces.len();  
+
+    $ cargo run
+    Compiling variables v0.1.0 (file:///projects/variables)
+    error[E0308]: mismatched types
+    --> src/main.rs:3:14
+      |
+    3 |     spaces = spaces.len();
+      |              ^^^^^^^^^^^^ expected `&str`, found `usize`  
+
+This error means we can't mutate a variable's type.
