@@ -60,4 +60,22 @@ This construct is allowed because the first `spaces` variable is a string type a
     3 |     spaces = spaces.len();
       |              ^^^^^^^^^^^^ expected `&str`, found `usize`  
 
-This error means we can't mutate a variable's type.
+This error means we can't mutate a variable's type.  
+
+####### Data Types #######  
+
+Every value in Rust is of a certain data type, which tells Rust what kind of data is being specified so it knows how to work with that data.  There are 2 data type subsets: scalar and compound.  
+
+Rust is a statically typed language meaning it must know the types of all variables at compile time.  The compiler can usually infer what type we want based on the value and how it's used.  In cases where many types are possible, such as when converting a `String` to a numeric type using `parse`, we must use a type annotation like this:  
+
+    let guess: u32 = "42".parse().expect("Not a number!");  
+
+If we don't add an annotation, the compiler will give an error saying `type annotations needed`.  
+
+####### Scalar Types #######  
+
+A scalar type represents a single value.  There are four primary scalar types in Rust: integers, floating-point numbers, booleans, and characters.  
+
+####### Integer types #######  
+
+An integer is a number without a fractional component... Basically any whole number.  Integers can be signed or unsigned.  Unsigned can only hold positive numbers.  Signed can be positive or negative.  Integers can be 8, 16, 32, 64, or 128 bits in length.  There is also the `isize` and `usize` which has a length that is defined by the architecture that the program is running one: 32-bit or 64-bit.  Signed variants can store numbers from -(2^(n-1)) to 2^(n-1) -1 inclusice, where n is the number of bits.  You can write integers in decimal, hex, octal, binary, and byte (only for u8).  Rust defaults to i32, which is generally the fastest, even on 64-bit systems.  The primary use for `isize` or `usize` is when indexing some kind of collection.
