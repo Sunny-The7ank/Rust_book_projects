@@ -82,10 +82,10 @@ fn main() {
     let first = a[0];
     let second = a[1];
 
-    let a = [1, 2, 3, 4, 5];
-    let index = 10;
+    //let a = [1, 2, 3, 4, 5];
+    //let index = 10;
 
-    let element = a[index];
+    //let element = a[index];
 
-    println!("The value of element is: {}", element);
+    //println!("The value of element is: {}", element);
 }
