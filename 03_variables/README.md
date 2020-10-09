@@ -136,4 +136,58 @@ In addition to destructuring through pattern matching, we can access a tuple ele
         let one = x.2;
     }  
 
-This program creates a tuple `x`, and then makes new variables for each element by using their respective indices.  Tuples are zero indexed.
+This program creates a tuple `x`, and then makes new variables for each element by using their respective indices.  Tuples are zero indexed.  
+
+####### The Array Type #######  
+
+Another way to collect multiple values is with arrays.  Unline tuples, arrays are all of the same type.  Arrays in Rust are fixed in length.  Values going into an array are written as comma separated within square braces:  
+
+    let a = [1, 2, 3, 4, 5];  
+
+Arrays are useful when you want your data on the stack rather than the heap.  An array isn't as flexible as the vector type, which is able to change in size.  If you don't know whether to use a vector or an array, you should probably use a vector.  
+An example of when you would definitely use an array over a vector is in a program that needs to know the months of the year.  
+
+    let months = ["January", "February", "March", "April", "May", "June", "July",
+                  "August", "September", "October", "November", "December"];  
+
+You would write an array's type by using square brackets, and within them include the types for the array members and how many members like this:  
+
+    let a: [i32; 5] = [1, 2, 3, 4, 5];  
+
+We defined that the array `a` has 5 elements, all the type `i32`.
+
+Writing an array's type like this looks similar to an alternative syntax for initializing an array: if you want to create an array that contains the same value for each element, you can specify the initial value, followed by a semicolon, and then the length of the array.  EX:  
+
+    let a = [3; 5];
+    // is the same as: 
+    let a = [3, 3, 3, 3, 3];  
+
+The array named `a` will contain 5 elements all set to 3.  This is much more concise.  
+
+An array is a single chunk of memory on the stack.  You can access elements using indexing.  
+
+    let a = [1, 2, 3, 4, 5];
+
+    let first = a[0];
+    let second = a[1];  
+
+In this example, the variable `first` will get the value `1`, and `second` will get the value `2`.
+
+What happens if you try to access an element of an array that is past the end of the array?  The program will compile, but it will panic at runtime.  
+
+    fn main() {
+        let a = [1, 2, 3, 4, 5];
+        let index = 10;
+
+        let element = a[index];
+
+        println!("The value of element is: {}", element);
+    }  
+
+Running `cargo run` will produce this:  
+
+    thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 10', src\main.rs:88:19
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+    error: process didn't exit successfully: `target\debug\variables.exe` (exit code: 101)  
+
+The compiler didn't catch the error, but the program resulted in a runtime error and didn't exit successfully.  When you attempt to access an array out of bounds, Rust will check that your index specified is within the bound of the array.

@@ -69,4 +69,23 @@ fn main() {
     let six_point_four = x_tup.1;
 
     let one = x_tup.2;
+
+    // Arrays
+    let a = [1, 2, 3, 4, 5];
+
+    let a: [i32; 5] = [1, 2, 3, 4, 5];
+
+    let a = [3; 5];
+
+    let a = [1, 2, 3, 4, 5];
+
+    let first = a[0];
+    let second = a[1];
+
+    let a = [1, 2, 3, 4, 5];
+    let index = 10;
+
+    let element = a[index];
+
+    println!("The value of element is: {}", element);
 }
