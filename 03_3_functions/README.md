@@ -51,4 +51,27 @@ This example creates a function with two params, both are `i32`.  The function t
 
 So far, we've only done functions in Rust without an ending expression, but we've used expressions as part of a statement.  Rust is an expression based language, so it's important to know the difference between expressions and statements.  Statements are instructions that perform an action and don't return a value.  Expressions evaluate to a value.  Example time:  
 
-Creating a variable and assigning a value with the `let`  keyword is a statement
+Creating a variable and assigning a value with the `let`  keyword is a statement.  
+ex: `let y = 6;`
+
+Function definitions are also statements; this entire thing is a statement in itself:  
+
+    fn main() {
+        let y = 6;
+    }  
+
+Statements don't return values.  Therefore, you can't assign a `let` statement to another variable, as the following code tries to do; you'll get an error:  
+
+    fn main() {
+        let x = (let y = 6);
+    }
+
+    $ cargo run
+       Compiling functions v0.1.0 (file:///projects/functions)
+    error: expected expression, found statement (`let`)
+     --> src/main.rs:2:14
+      |
+    2 |     let x = (let y = 6);
+      |              ^^^
+      |
+      = note: variable declaration using `let` is a statement
