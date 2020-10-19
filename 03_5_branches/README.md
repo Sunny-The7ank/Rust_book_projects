@@ -18,3 +18,6 @@ Put this in your main.rs:
         }
     }  
 
+All `if` expressions start with the `if` keyword, which is followed by a conditional.  In this example, the condition checks if the variable `number` is less than `5`.  The block of code run if the statement is true is placed immediately after the condition check inside curly braces `{}`.  Blocks of code associated with the conditions in `if` expressions are sometimes called arms, just like arms in a `match` statement.  
+
+Optionally we can include an `else` expression, which is executed if the condition is not met.  If an `else` expression is not provided, the program will just skip the `if` block and move on to the next bit of code.
