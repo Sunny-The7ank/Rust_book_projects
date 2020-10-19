@@ -20,4 +20,43 @@ Put this in your main.rs:
 
 All `if` expressions start with the `if` keyword, which is followed by a conditional.  In this example, the condition checks if the variable `number` is less than `5`.  The block of code run if the statement is true is placed immediately after the condition check inside curly braces `{}`.  Blocks of code associated with the conditions in `if` expressions are sometimes called arms, just like arms in a `match` statement.  
 
-Optionally we can include an `else` expression, which is executed if the condition is not met.  If an `else` expression is not provided, the program will just skip the `if` block and move on to the next bit of code.
+Optionally we can include an `else` expression, which is executed if the condition is not met.  If an `else` expression is not provided, the program will just skip the `if` block and move on to the next bit of code.  
+
+It's worth noting that the condition in this code must be a `bool`.  If the condition isn't a bool, we'll get an error like this:  
+
+    fn main() {
+        let number = 3;
+
+        if number {
+            println!("number was three");
+        }
+    }  
+
+The `if` condition evaluates to `3`, error is:  
+
+    Compiling branches v0.1.0 (file:///projects/branches)
+    error[E0308]: mismatched types
+     --> src/main.rs:4:8
+      |
+    4 |     if number {
+      |        ^^^^^^ expected `bool`, found integer
+
+    error: aborting due to previous error
+
+    For more information about this error, try `rustc --explain E0308`.
+    error: could not compile `branches`.
+
+    To learn more, run the command again with --verbose.  
+
+The error indicates that Rust expected a `bool` but got an integer.  Unlike langs like Ruby and JavaScript, Rust doesn't automatically convert non-boolean values to booleans.  You must be explicit and always provide `if` with a boolean as its condition.  If we want the code block to run only when a number is not equal to zero, we can change the if expression to the following:  
+
+    fn main() {
+        let number = 3;
+
+        if number != 0 {
+            println!("number was something other than zero");
+        }
+    }  
+
+####### Handling Multiple Conditions with `else if` #######  
+
