@@ -64,7 +64,7 @@ You can have multiple conditions by combining `if` and `else` in an `else if` ex
 
     fn main() {
         let number = 6;
-    
+
         if number % 4 == 0 {
             println!("number is divisible by 4");
         } else if number % 3 == 0 {
@@ -74,4 +74,26 @@ You can have multiple conditions by combining `if` and `else` in an `else if` ex
         } else {
             println!("number is not divisible by 4, 3, or 2");
         }
+    }  
+
+The program has four possible paths it can take.  This is the output from running with default value:  
+
+    Compiling branches v0.1.0 (file:///projects/branches)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.31s
+     Running `target/debug/branches`
+    number is divisible by 3  
+
+When this program executes, it checks each `if` expression in turn and executes the first body where the condition is true.  We don't see the other matching arms since `if` statements only execute the FIRST match.  
+
+Using too many `else if` expressions can clutter code, so if you have more than one, consider refactoring to a `match` expression.  
+
+####### Usinf `if` in a `let` Statement #######  
+
+Because `if` is an expression, we can use it on the right side of a `let` statement like this:  
+
+    fn main() {
+        let condition = true;
+        let number = if condition { 5 } else { 6 };
+    
+        println!("The value of number is: {}", number);
     }
