@@ -94,6 +94,43 @@ Because `if` is an expression, we can use it on the right side of a `let` statem
     fn main() {
         let condition = true;
         let number = if condition { 5 } else { 6 };
-    
+
+        println!("The value of number is: {}", number);
+    }  
+
+The `number` variable will be bound to a value based on the result of the `if` expression.  The result looks like this:  
+
+       Compiling branches v0.1.0 (file:///projects/branches)
+        Finished dev [unoptimized + debuginfo] target(s) in 0.30s
+         Running `target/debug/branches`
+    The value of number is: 5  
+
+Blocks of code evaluate to the last expression within them.  Numbers by themselves are also expressions.  In this case, the value of the whole `if` statement depends on which block of code is executed.  The values of the potential results must be of the same type.  In this example, both `5` and `6` are `i32` integers.  You can't mix data types in `let if` statements.  EX:  
+
+    fn main() {
+        let condition = true;
+
+        let number = if condition { 5 } else { "six" };
+
         println!("The value of number is: {}", number);
     }
+
+When this code is compiled this error is returned because the `if` and `else` arms have value types that are incompatible.  
+
+       Compiling branches v0.1.0 (file:///projects/branches)
+    error[E0308]: if and else have incompatible types
+     --> src/main.rs:4:44
+      |
+    4 |     let number = if condition { 5 } else { "six" };
+      |                                 -          ^^^^^ expected integer, found `&str`
+      |                                 |
+      |                                 expected because of this
+
+    error: aborting due to previous error
+
+    For more information about this error, try `rustc --explain E0308`.
+    error: could not compile `branches`.
+
+    To learn more, run the command again with --verbose.  
+
+The expression in the `if` block is an integer, while the expression in the `else` block is a string
