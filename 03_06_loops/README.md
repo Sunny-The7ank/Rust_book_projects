@@ -79,8 +79,21 @@ A more concise alternative would be a `for` loop and to execute some code for ea
 
     fn main() {
         let a = [10, 20, 30, 40, 50];
-    
+
         for element in a.iter() {
             println!("the value is: {}", element);
         }
+    }
+
+When run, this code produces the same output as the `while` loop, but now the loop is much safer.  If the size of a collection accessed with a `while` loop is changed, the conditional needs to be changed.  With a `for` loop, we are iterating over each item in the collection in turn.  The `for` loop is also more concise.  
+
+The safety and conciseness of `for` loops make them the most commonly used type of loop in Rust.  Even in situations where you want to run a piece of code a certain number of times, as in the countdown example from earlier, mots Rust devs would use a `for` loop.  The way to implement this is with a `Range`, which is a type provided by the standard library that generates all numbers in sequence starting from one number and ending before another number.  
+
+Here's what that countdown would look like, using `for` and another method we haven't seen `rev`, which reverses a range.  
+
+    fn main() {
+        for number in (1..4).rev() {
+            println!("{}!", number);
+        }
+        println!("LIFTOFF!!!");
     }
