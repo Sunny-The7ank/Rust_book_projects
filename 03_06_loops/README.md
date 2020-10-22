@@ -34,3 +34,20 @@ One of the uses of a `loop` is to retry an operation that might fail, such as ch
         println!("The result is {}", result);
     }  
 
+Before the loop, we declare `let mut counter = 0;`  Then we declare `result` to hold the value returned from the loop.  On every iteration of the loop, we add `1` to `counter`, and check if it is equal to `10`.  When it is, we break and return `counter` multiplied by `2`, which is 20.  
+
+####### Conditional Loops with `while` #######  
+
+It's often useful for a program to evaluate a condition within a loop.  While the condition is true, the loop runs like normal.  When the condition is no longer true, call `break`, and stop the loop.  This loop type could be implemented using a combination of `loop`, `if`, `else`, and `break`.  But, Rust already has something for this called a `while` loop.  EX:  
+
+    fn main() {
+        let mut number = 3;
+    
+        while number != 0 {
+            println!("{}!", number);
+    
+            number -= 1;
+        }
+    
+        println!("LIFTOFF!!!");
+    }
