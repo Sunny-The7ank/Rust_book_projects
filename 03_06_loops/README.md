@@ -16,3 +16,21 @@ When we run this, we see `again!` repeated on a new line until we stop the progr
 
 Rust provides a cleaner, more reliable method fro breaking out of a loop called `break`.  This should be used after a certain condition is met to end the loop.  
 
+####### Returning Values from Loops #######  
+
+One of the uses of a `loop` is to retry an operation that might fail, such as checking for thread completion.  However, you might need to pass the result of that operation to the rest of your code.  To do this, you can add the value you want to return after the `break` expression used to stop the loop; that value will be returned out of the loop for use, EX:  
+
+    fn main() {
+        let mut counter = 0;
+
+        let result = loop {
+            counter += 1;
+
+            if counter == 10 {
+                break counter * 2;
+            }
+        };
+
+        println!("The result is {}", result);
+    }  
+
