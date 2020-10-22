@@ -42,12 +42,45 @@ It's often useful for a program to evaluate a condition within a loop.  While th
 
     fn main() {
         let mut number = 3;
-    
+
         while number != 0 {
             println!("{}!", number);
-    
+
             number -= 1;
         }
-    
+
         println!("LIFTOFF!!!");
+    }
+
+This construct eliminates a lot of the nesting that would be necessary if you used other building blocks to kludge it.  
+
+####### Looping Through a Collection with `for` #######  
+
+You could use a `while` loop to iterate over elements of a collection, such as an array.  EX:  
+
+    fn main() {
+        let a = [10, 20, 30, 40, 50];
+        let mut index = 0;
+
+        while index < 5 {
+            println!("the value is: {}", a[index]);
+
+            index += 1;
+        }
+    }
+
+Here, the code counts up through the elements in the array.  It starts at index `0`, and loops until it reaches the final index in the array (when `index < 5` is no longer true).  
+
+All five array values appear in the terminal, as expected.  Even though `index` will reach a value of `5` at some point, the loop stops executing before trying to fetch a sixth value from the array (which would crash).  An index of 4 would refer to the final value, because arrays are 0 indexed.  
+
+This approach is error prone; we could cause the program to panic if the index length is incorrect.  It's slow, because the compiler adds runtime code to perform the conditional check on every element on every iteration through the loop.  
+
+A more concise alternative would be a `for` loop and to execute some code for each item in the collection.  EX:  
+
+    fn main() {
+        let a = [10, 20, 30, 40, 50];
+    
+        for element in a.iter() {
+            println!("the value is: {}", element);
+        }
     }
